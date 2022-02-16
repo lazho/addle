@@ -1,0 +1,31 @@
+{
+  "name": "addle",
+  "version": "0.0.1",
+  "description": "A PVP Wordle-Like Game.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastify": "^3.27.1",
+    "fastify-static": "^4.5.0",
+    "handlebars": "^4.7.7",
+    "point-of-view": "^5.1.0",
+    "socket.io": "^4.4.1",
+    "fastify-socket.io": "^3.0.0",
+    "sequelize": "^6.16.1",
+    "sqlite3": "^5.0.2"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/glitch-hello-node"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}

@@ -1,0 +1,253 @@
+:root {
+  --light-colour: #cab6cd;
+  --light-2-colour: #eff2c0;
+  --dark-colour: #1e1e24;
+  --hit-colour: #52a383;
+  --close-colour: #ff9933;
+  /* --bright-text-colour: #e5fffa; */
+  color: var(--dark-colour);
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("https://cdn.glitch.global/71feea7a-d282-4074-b857-542f77022029/Inter-Regular.woff?v=1643883187255")
+    format("woff");
+}
+@font-face {
+  font-family: Inter;
+  font-weight: bold;
+  src: url("https://cdn.glitch.global/71feea7a-d282-4074-b857-542f77022029/Inter-Bold.woff?v=1643883263356")
+    format("woff");
+}
+@font-face {
+  font-family: Inter;
+  font-weight: 600;
+  src: url("https://cdn.glitch.global/71feea7a-d282-4074-b857-542f77022029/Inter-SemiBold.woff?v=1645008784953")
+    format("woff");
+}
+@font-face {
+  font-family: Inter;
+  font-style: italic;
+  src: url("https://cdn.glitch.global/71feea7a-d282-4074-b857-542f77022029/Inter-Italic.woff?v=1644867122031")
+    format("woff");
+}
+
+html {
+  background: linear-gradient(
+    180deg,
+    var(--light-colour) 45%,
+    var(--light-2-colour)
+  );
+  min-height: 100%;
+}
+
+body {
+  font-family: Inter, sans-serif;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  line-height: 1rem;
+  height: 2.75rem;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid var(--dark-colour);
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--dark-colour);
+  white-space: nowrap;
+}
+
+.btn-small {
+  height: 1.75rem;
+}
+
+.btn-active {
+  background: var(--dark-colour);
+  color: var(--light-colour);
+}
+
+.btn-disabled {
+  border-style: dotted;
+  cursor: not-allowed;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 1rem;
+}
+
+.title h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.title p {
+  margin: 0;
+}
+
+.small-text {
+  font-size: 0.8rem;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 2rem;
+}
+
+.main-menu p {
+  margin: 0 0 1rem;
+}
+
+.choice-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.queue-button {
+  margin-top: 1rem;
+  background: var(--hit-colour);
+}
+
+.queue-button-active {
+  background: var(--close-colour);
+}
+
+#matches {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+#matches p {
+  margin: 0.5rem 0;
+}
+
+#matches .btn {
+  margin: 0.5rem 0;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.row-active {
+  margin: 10px 0;
+  gap: 12px;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--dark-colour);
+  cursor: not-allowed;
+  color: var(--dark-colour);
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+}
+
+.tile-active {
+  color: var(--light-colour);
+  background: var(--dark-colour);
+}
+
+.tile-hit {
+  border-color: var(--hit-colour);
+  background: var(--hit-colour);
+  text-decoration: underline;
+}
+
+.tile-close {
+  border-color: var(--close-colour);
+  background: var(--close-colour);
+  text-decoration: wavy underline;
+}
+
+.tile-miss {
+  border: 2px dotted var(--dark-colour);
+}
+
+.row-active .tile {
+  cursor: cell;
+  width: 60px;
+  height: 60px;
+  font-size: 2.5rem;
+  border: 3px solid var(--dark-colour);
+}
+
+#log {
+  margin-top: 0px;
+  overflow-y: auto;
+  max-height: 200px;
+  padding: 10px;
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.login-menu {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+}
+
+.login-menu input {
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
