@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="{{seo.favicon}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{seo.title}} - </title>
+    
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="{{seo.url}}">
+    <meta name="description" content="{{seo.description}}">
+    <meta property="og:title" content="{{seo.title}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{seo.url}}">
+    <meta property="og:description" content="{{seo.description}}">
+    <meta property="og:image" content="{{seo.image}}">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content" role="main">
+        <div class="title">
+          <a href="/"><h1>ADDLE</h1></a>
+          <p class="small-text">© 2022 pekoe.dev</p>
+        </div>
+        <span class="small-text">Match ID: <span class="underline" id="matchId">{{matchId}}</span></span><br/>
+        <p class="text-centered">
+          You are the <span id="side-emoji"></span> <span class="underline" id="side">...</span>.<br/>
+          <span id="status-emoji"></span> <span class="semibold" id="status">...</span>
+        </p>
+        <div class="board" id="board">
+          <div class="row">
+            <div class="tile">
+              ...
+            </div>
+          </div>
+        </div>
+        <div class="text-centered" id="log">
+          <p>
+          </p>
+        </div>
+        <div class="text-centered" id="log">
+          <p>
+            🤔 <span class="semibold underline">How to Play</span>
+          </h4>
+          <p class="hidden" id="help-guesser">
+            As the <span class="underline">guesser</span>, you are mostly playing normal Wordle.<br>
+            Try to force the enemy into a corner.<br>
+            Remember - the enemy must respect all the results of a previous turn.
+          </p>
+          <p class="hidden" id="help-enemy">
+            As the <span class="underline">enemy</span>, you choose the answer each turn.<br>
+            However, answers must respect the results from previous turns.<br>
+            After the turn, your board will show you the guesser's guess.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">const matchId = '{{matchId}}';</script>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+  <script src="/match.js" type="text/javascript"></script>
+</html>
