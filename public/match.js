@@ -218,6 +218,10 @@ socket.on("opponent-move", (args) => {
   }
 });
 
+const setOpponent = function (opponent) {
+  document.querySelector("#opponent").innerText = opponent;
+}
+
 const setSide = function (side) {
   document.querySelector("#side-emoji").innerText = side === "guesser" ? "🔎" : "😈";
   document.querySelector("#side").innerText = side;
@@ -229,6 +233,7 @@ const setStatus = function (emoji, message) {
 }
 
 socket.on("match-fetch", ({ match }) => {
+  setOpponent(match.opponent);
   setSide(match.side);
   document.querySelector(`#help-${match.side}`).classList.remove("hidden");
   const statusSpan = document.querySelector("#status");

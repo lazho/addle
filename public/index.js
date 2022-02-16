@@ -45,7 +45,7 @@ socket.onAny((err, ...args) => {
 
 const queueSettings = {
   queue: 'pvp',
-  side: 'guesser',
+  side: 'flex',
 }
 
 let queueing = false;

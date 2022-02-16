@@ -28,7 +28,7 @@
       </div>
       <div class="identity">
         <p>
-          Identified as: <span class="italic"><span id="handle">...</span>#<span id="discriminator">...</span></span>
+          Identified as: <span class="semibold"><span id="handle">...</span>#<span id="discriminator">...</span></span>
         </p>
         <div id="manage-login">
           <a class="underline clickable" id="change-handle-tip">
@@ -42,27 +42,30 @@
             Play against
           </p>
           <div class="choice-buttons">
-            <a class="btn btn-disabled" data-group="queue" data-choice="pve">
-              🤖 AI
-            </a>
             <a class="btn btn-active" data-group="queue" data-choice="pvp">
               🧑 a stranger
             </a>
             <a class="btn btn-disabled" data-group="queue" data-choice="private">
               💗 a friend
             </a>
+            <a class="btn btn-disabled" data-group="queue" data-choice="pve">
+              🤖 an AI
+            </a>
           </div>
         </div>
         <div>
           <p>
-            as the
+            as
           </p>
           <div class="choice-buttons">
-            <a class="btn btn-active" data-group="side" data-choice="guesser">
-              🔎 guesser
+            <a class="btn btn-active" data-group="side" data-choice="flex">
+              🎲 flex
+            </a>
+            <a class="btn" data-group="side" data-choice="guesser">
+              🔎 the guesser
             </a>
             <a class="btn" data-group="side" data-choice="enemy">
-              😈 enemy
+              😈 the enemy
             </a>
           </div>          
         </div>
@@ -70,7 +73,7 @@
           🔀 Queue!
         </a>
         <div class="hidden" id="matches">
-          <p class="semibold underline">Your ongoing matches:</p>
+          <p class="semibold">Your ongoing matches:</p>
           <p>Matches that do not end in 24 hours will be deleted.</p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes, Op } = require("sequelize");
+const cron = require("node-cron");
 
 const sequelize = new Sequelize(
   "database",
@@ -94,19 +95,47 @@ const dbSetup = async function () {
     console.error("Cannot connect to db.", e);
   }
   await dbClean();
+  cron.schedule("0 * * * *", async () => {
+    await dbClean();
+  });
 };
 
-const dbClean = async function() {
-  const ttlMs = 1000 * 60 * 60 * 24;
+const dbClean = async function () {
+  const dateThreshold = new Date(
+    Date.now() - process.env.DB_CLEAN_TTL_DAYS * 24 * 60 * 60 * 1000
+  );
   await Match.destroy({
     where: {
       isLive: true,
       createdAt: {
-        [Op.lt]: new Date(Date.now() - ttlMs),
-      }
+        [Op.lt]: dateThreshold,
+      },
+    },
+  });
+  await sequelize.query(
+    `
+Delete FROM 
+  Auths 
+WHERE 
+  Auths.snowflake IN (
+    Select 
+      Auths.snowflake 
+    FROM 
+      Auths 
+      LEFT JOIN Matches ON Auths.snowflake = Matches.guesserId 
+      OR Auths.snowflake = Matches.enemyId 
+    WHERE 
+      Matches.snowflake IS NULL 
+      AND Auths.lastSeenAt < $dateThreshold
+  );
+`,
+    {
+      bind: {
+        dateThreshold,
+      },
     }
-  })
-}
+  );
+};
 
 module.exports = {
   sequelize,

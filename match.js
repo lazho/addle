@@ -115,6 +115,7 @@ const viewMatch = async function (snowflake, userId) {
     snowflake,
     createdAt: model.createdAt,
     isLive: model.isLive,
+    opponent: side === 'guesser' ? model.enemyId : model.guesserId,
     winner,
     side,
     myTurn,

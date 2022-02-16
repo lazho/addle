@@ -192,11 +192,11 @@ const validateMove = function (board, word, side) {
         };
       }
     }
-
-    return {
-      valid: true,
-    };
   }
+
+  return {
+    valid: true,
+  };
 };
 
 module.exports = {
