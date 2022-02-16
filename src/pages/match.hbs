@@ -28,7 +28,8 @@
         </div>
         <span class="small-text">Match ID: <span class="underline" id="matchId">{{matchId}}</span></span><br/>
         <p class="text-centered">
-          You are the <span id="side-emoji"></span> <span class="underline" id="side">...</span>.<br/>
+          Playing against <span class="semibold" id="opponent">...</span>.</br>
+          You are the <span id="side-emoji"></span> <span class="semibold" id="side">...</span>.<br/>
           <span id="status-emoji"></span> <span class="semibold" id="status">...</span>
         </p>
         <div class="board" id="board">
@@ -44,17 +45,18 @@
         </div>
         <div class="text-centered" id="log">
           <p>
-            🤔 <span class="semibold underline">How to Play</span>
+            🤔 <span class="semibold">How to Play</span>
           </h4>
           <p class="hidden" id="help-guesser">
-            As the <span class="underline">guesser</span>, you are mostly playing normal Wordle.<br>
+            As the <span class="semibold">guesser</span>, you are mostly playing normal Wordle.<br>
             Try to force the enemy into a corner.<br>
             Remember - the enemy must respect all the results of a previous turn.
           </p>
           <p class="hidden" id="help-enemy">
-            As the <span class="underline">enemy</span>, you choose the answer each turn.<br>
+            As the <span class="semibold">enemy</span>, you choose the answer each turn.<br>
             However, answers must respect the results from previous turns.<br>
-            After the turn, your board will show you the guesser's guess.
+            After the turn, your board will show you the guesser's guess.<br>
+            <span class="small-text">(Sorry, I will have a better UI for you soon.)</span>
           </p>
         </div>
       </div>

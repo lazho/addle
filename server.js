@@ -142,6 +142,11 @@ fastify.ready().then(async () => {
       fastify.io.to(user.snowflake).emit("queue-entered", { side });
       const pair = queueComponent.matchMake();
       if (pair) {
+        console.log(
+          `[matchMake] Match found! G: ${formatName(
+            await getName(pair.guesser)
+          )} vs E: ${formatName(await getName(pair.enemy))}.`
+        );
         const match = await matchComponent.newMatch(pair.guesser, pair.enemy);
         fastify.io.to(pair.guesser).emit("match-found");
         fastify.io.to(pair.enemy).emit("match-found");
@@ -161,6 +166,7 @@ fastify.ready().then(async () => {
         socket.emit("match-not-found");
         return;
       }
+      match.opponent = formatName(await getName(match.opponent));
       socket.emit("match-fetch", { match });
     });
 
