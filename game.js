@@ -9,7 +9,7 @@ class Board {
 
 const validateWord = function (word) {
   return words.includes(word);
-}
+};
 
 const compare = function (guess, answer) {
   validateWord(guess);
@@ -125,7 +125,9 @@ const validateConstraints = function (answer, constraints) {
       if (constraints.hits[i] !== answer[i]) {
         return {
           valid: false,
-          reason: `"${constraints.hits[i].toUpperCase()}" must be letter ${i + 1}.`,
+          reason: `"${constraints.hits[i].toUpperCase()}" must be letter ${
+            i + 1
+          }.`,
         };
       }
       continue;
@@ -133,8 +135,8 @@ const validateConstraints = function (answer, constraints) {
     if (constraints.misses[i] === answer[i]) {
       return {
         valid: false,
-          reason: `"${answer[i].toUpperCase()}" cannot be letter ${i + 1}.`
-      }
+        reason: `"${answer[i].toUpperCase()}" cannot be letter ${i + 1}.`,
+      };
     }
     if (constraints.bans.includes(answer[i])) {
       return {
@@ -152,7 +154,9 @@ const validateConstraints = function (answer, constraints) {
     if (!counts[letter] || counts[letter] != constraints.exactly[letter]) {
       return {
         valid: false,
-        reason: `"${letter.toUpperCase()}" must appear exactly ${constraints.exactly[letter]} time(s) in the word.`,
+        reason: `"${letter.toUpperCase()}" must appear exactly ${
+          constraints.exactly[letter]
+        } time(s) in the word.`,
       };
     }
   }
@@ -160,7 +164,9 @@ const validateConstraints = function (answer, constraints) {
     if (!counts[letter] || counts[letter] < constraints.atLeast[letter]) {
       return {
         valid: false,
-        reason: `"${letter.toUpperCase()}" must appear at least ${constraints.atLeast[letter]} time(s) in the word.`,
+        reason: `"${letter.toUpperCase()}" must appear at least ${
+          constraints.atLeast[letter]
+        } time(s) in the word.`,
       };
     }
   }

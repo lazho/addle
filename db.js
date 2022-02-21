@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, Op } = require("sequelize");
 const cron = require("node-cron");
+const { logger } = require("./log");
 
 const sequelize = new Sequelize(
   "database",
@@ -18,6 +19,7 @@ const sequelize = new Sequelize(
       idle: 10000,
     },
     storage: ".data/database.sqlite",
+    logging: (msg) => logger.debug(msg),
   }
 );
 
@@ -92,7 +94,7 @@ const dbSetup = async function () {
   try {
     await sequelize.authenticate();
   } catch (e) {
-    console.error("Cannot connect to db.", e);
+    logger.error("Cannot connect to db.", e);
   }
   await dbClean();
   cron.schedule("0 * * * *", async () => {
@@ -126,11 +128,11 @@ WHERE
       OR Auths.snowflake = Matches.enemyId 
     WHERE 
       Matches.snowflake IS NULL 
-      AND Auths.lastSeenAt < $dateThreshold
+      AND Auths.lastSeenAt < :dateThreshold
   );
 `,
     {
-      bind: {
+      replacements: {
         dateThreshold,
       },
     }

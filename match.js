@@ -3,20 +3,6 @@ const { sequelize, Match } = require("./db");
 const { generateSnowflake } = require("./utils");
 const gameComponent = require("./game");
 
-class OutOfTurnError extends Error {
-  constructor(matchId, side) {
-    super(`The ${side} of match ${matchId} tried to move out of turn.`);
-    this.name = "OutOfTurnError";
-  }
-}
-
-class InvalidMatchError extends Error {
-  constructor(matchId) {
-    super(`The match ${matchId} either doesn't exist or is not live.`);
-    this.name = "InvalidMatchError";
-  }
-}
-
 const newMatch = async function (
   guesserId,
   enemyId,
@@ -115,7 +101,7 @@ const viewMatch = async function (snowflake, userId) {
     snowflake,
     createdAt: model.createdAt,
     isLive: model.isLive,
-    opponent: side === 'guesser' ? model.enemyId : model.guesserId,
+    opponent: side === "guesser" ? model.enemyId : model.guesserId,
     winner,
     side,
     myTurn,
@@ -190,9 +176,6 @@ const move = async function (snowflake, word, userId) {
 };
 
 module.exports = {
-  OutOfTurnError,
-  InvalidMatchError,
-
   newMatch,
   getMatch,
   listMatches,
