@@ -1,3 +1,5 @@
+const { logger } = require("./log");
+
 const guesserQueue = [];
 const enemyQueue = [];
 const flexQueue = [];
@@ -17,7 +19,7 @@ const getState = function (snowflake) {
 
 const enterQueue = function (snowflake, side) {
   if (guesserQueue.includes(snowflake) || enemyQueue.includes(snowflake)) {
-    console.log(`[enter-queue] ${snowflake} is already queueing!`);
+    logger.error(`[enter-queue] ${snowflake} is already queueing!`);
     return;
   }
   switch (side) {
@@ -30,29 +32,29 @@ const enterQueue = function (snowflake, side) {
     default:
       flexQueue.push(snowflake);
   }
-  console.log(`[enter-queue] ${snowflake} entered the ${side} queue.`);
+  logger.info(`[enter-queue] ${snowflake} entered the ${side} queue.`);
 };
 
 const leaveQueue = function (snowflake) {
   let i = guesserQueue.findIndex((ticket) => ticket === snowflake);
   if (i > -1) {
     guesserQueue.splice(i, 1);
-    console.log(`[leaveQueue] ${snowflake} left the guesser queue.`);
+    logger.info(`[leaveQueue] ${snowflake} left the guesser queue.`);
   }
   i = enemyQueue.findIndex((ticket) => ticket === snowflake);
   if (i > -1) {
     enemyQueue.splice(i, 1);
-    console.log(`[leaveQueue] ${snowflake} left the enemy queue.`);
+    logger.info(`[leaveQueue] ${snowflake} left the enemy queue.`);
   }
   i = flexQueue.findIndex((ticket) => ticket === snowflake);
   if (i > -1) {
     flexQueue.splice(i, 1);
-    console.log(`[leaveQueue] ${snowflake} left the flex queue.`);
+    logger.info(`[leaveQueue] ${snowflake} left the flex queue.`);
   }
 };
 
 const matchMake = function () {
-  console.log("[matchMake] Serving the queue!");
+  logger.info("[matchMake] Serving the queue!");
   if (flexQueue.length >= 2) {
     return { guesser: flexQueue.shift(), enemy: flexQueue.shift() };
   }
@@ -65,7 +67,7 @@ const matchMake = function () {
       return { guesser: guesserQueue.shift(), enemy: flexQueue.shift() };
     }
   }
-  
+
   if (guesserQueue.length && enemyQueue.length) {
     return { guesser: guesserQueue.shift(), enemy: enemyQueue.shift() };
   }

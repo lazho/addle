@@ -5,6 +5,7 @@ const matchComponent = require("./match");
 const { dbSetup } = require("./db");
 const { formatName } = require("./utils");
 const queueComponent = require("./queue");
+const { logger } = require("./log");
 
 const fastify = require("fastify")({
   logger: false,
@@ -14,6 +15,10 @@ const fastify = require("fastify")({
 fastify.register(require("fastify-static"), {
   root: path.join(__dirname, "public"),
   prefix: "/",
+});
+
+fastify.register(require("fastify-minify"), {
+  minInfix: true,
 });
 
 fastify.register(require("fastify-socket.io"), {
@@ -55,7 +60,7 @@ fastify.listen(process.env.PORT, "0.0.0.0", async function (err, address) {
     process.exit(1);
   }
   await dbSetup();
-  console.log(`Your app is listening on ${address}`);
+  logger.info(`Your app is listening on ${address}`);
   fastify.log.info(`server listening on ${address}`);
 });
 
@@ -142,7 +147,7 @@ fastify.ready().then(async () => {
       fastify.io.to(user.snowflake).emit("queue-entered", { side });
       const pair = queueComponent.matchMake();
       if (pair) {
-        console.log(
+        logger.info(
           `[matchMake] Match found! G: ${formatName(
             await getName(pair.guesser)
           )} vs E: ${formatName(await getName(pair.enemy))}.`
@@ -185,7 +190,7 @@ fastify.ready().then(async () => {
     });
 
     socket.onAny((event, ...args) => {
-      console.log(
+      logger.info(
         `[${event}] from ${formatName(user)} (${user.snowflake}):`,
         ...args
       );

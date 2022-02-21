@@ -5,7 +5,7 @@
     <link rel="icon" href="{{seo.favicon}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{{seo.title}} - </title>
+    <title>Match {{matchId}}</title>
     
     <!-- Meta tags for SEO and social sharing -->
     <link rel="canonical" href="{{seo.url}}">
@@ -28,7 +28,7 @@
         </div>
         <span class="small-text">Match ID: <span class="underline" id="matchId">{{matchId}}</span></span><br/>
         <p class="text-centered">
-          Playing against <span class="semibold" id="opponent">...</span>.</br>
+          Playing against <span class="semibold" id="opponent">...</span>.<br/>
           You are the <span id="side-emoji"></span> <span class="semibold" id="side">...</span>.<br/>
           <span id="status-emoji"></span> <span class="semibold" id="status">...</span>
         </p>
@@ -43,10 +43,10 @@
           <p>
           </p>
         </div>
-        <div class="text-centered" id="log">
+        <div class="text-centered" id="faq">
           <p>
             🤔 <span class="semibold">How to Play</span>
-          </h4>
+          </p>
           <p class="hidden" id="help-guesser">
             As the <span class="semibold">guesser</span>, you are mostly playing normal Wordle.<br>
             Try to force the enemy into a corner.<br>
@@ -64,5 +64,5 @@
   </body>
   <script type="text/javascript">const matchId = '{{matchId}}';</script>
   <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
-  <script src="/match.js" type="text/javascript"></script>
+  <script src="/match.min.js" type="text/javascript"></script>
 </html>

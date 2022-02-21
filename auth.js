@@ -8,6 +8,7 @@ const {
   formatName,
 } = require("./utils");
 const { green } = require("./words.json");
+const { logger } = require("./log");
 
 const authenticate = async function (token) {
   const result = await Auth.findOne({
@@ -20,7 +21,7 @@ const authenticate = async function (token) {
     result.lastSeenAt = Date.now();
     await result.save();
     const { snowflake, handle, discriminator, lastSeenAt } = result;
-    console.log(
+    logger.info(
       `[authenticate] Authenticating ${handle}#${discriminator}, snowflake ID: ${snowflake}`
     );
     return { snowflake, handle, discriminator };
@@ -73,7 +74,7 @@ const changeHandle = async function (
       result.handle = generateHandle();
       result.discriminator = generateDiscriminator();
       await result.save();
-      console.log(
+      logger.info(
         `[changeHandle] Changed handle of ${formatName(
           handle,
           discriminator
